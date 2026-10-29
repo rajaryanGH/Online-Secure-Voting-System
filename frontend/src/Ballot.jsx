@@ -8,21 +8,21 @@ export default function Ballot({ user }) {
   const [hashReceipt, setHashReceipt] = useState('');
   const [hasVoted, setHasVoted] = useState(user.hasVoted);
 
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
   useEffect(() => {
-    axios.get('http://localhost:5000/api/candidates').then(res => setCandidates(res.data));
+  axios.get(`${API_URL}/api/candidates`).then(res => setCandidates(res.data));
   }, []);
 
   const handleVote = async () => {
-    try {
-      // 1. Retrieve One-Time Anonymous Voting Token
-      const tokenRes = await axios.post('http://localhost:5000/api/vote/get-token', { studentId: user.id });
-      const votingToken = tokenRes.data.votingToken;
+  try {
+    const tokenRes = await axios.post(`${API_URL}/api/vote/get-token`, { studentId: user.id });
+    const votingToken = tokenRes.data.votingToken;
 
-      // 2. Submit Encrypted Vote anonymously
-      const voteRes = await axios.post('http://localhost:5000/api/vote/cast', {
-        votingToken,
-        candidateId: selected
-      });
+    const voteRes = await axios.post(`${API_URL}/api/vote/cast`, {
+      votingToken,
+      candidateId: selected
+    });
 
       setHashReceipt(voteRes.data.currentHash);
       setMessage('Your vote has been anonymously cast and linked to the Hash Chain!');

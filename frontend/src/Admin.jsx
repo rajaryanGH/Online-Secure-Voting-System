@@ -4,9 +4,11 @@ import axios from 'axios';
 export default function Admin() {
   const [data, setData] = useState(null);
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/admin/results').then(res => setData(res.data));
-  }, []);
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
+useEffect(() => {
+  axios.get(`${API_URL}/api/admin/results`).then(res => setData(res.data));
+}, []);
 
   if (!data) return <div className="container"><p>Loading audit logs...</p></div>;
 
