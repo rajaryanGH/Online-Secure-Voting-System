@@ -7,7 +7,11 @@ const Database = require('better-sqlite3');
 const path = require('path');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://online-secure-voting-system-4vmb.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 const JWT_SECRET = 'college_super_secret_voting_key_2026';
