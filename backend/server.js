@@ -6,11 +6,16 @@ const jwt = require('jsonwebtoken');
 const Database = require('better-sqlite3');
 const path = require('path');
 
-const app = express();
+const cors = require('cors');
+
 app.use(cors({
-  origin: 'https://online-secure-voting-system-4vmb.onrender.com',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: [
+    'https://online-secure-voting-system-five.vercel.app',
+    'http://localhost:3000'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 app.use(express.json());
 
