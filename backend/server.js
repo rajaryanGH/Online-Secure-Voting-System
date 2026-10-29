@@ -1,12 +1,15 @@
 const express = require('express');
+const cors = require('cors');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Database = require('better-sqlite3');
 const path = require('path');
 
-const cors = require('cors');
+// 1. MUST DEFINE 'app' FIRST
+const app = express();
 
+// 2. THEN USE 'app.use()'
 app.use(cors({
   origin: [
     'https://online-secure-voting-system-five.vercel.app',
@@ -16,6 +19,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
 app.use(express.json());
 
 const JWT_SECRET = 'college_super_secret_voting_key_2026';
