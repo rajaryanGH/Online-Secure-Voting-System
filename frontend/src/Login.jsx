@@ -19,10 +19,6 @@ export default function Login({ onLogin }) {
   return (
     <div className="container">
       <h2>College Voting Portal</h2>
-      <p style={{ fontSize: '12px', color: '#666' }}>
-        <strong>Students:</strong> STU001 / STU002 / STU003 (Pass: password123)<br />
-        <strong>Admin:</strong> ADMIN01 (Pass: admin123)
-      </p>
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleLogin}>
         <input 

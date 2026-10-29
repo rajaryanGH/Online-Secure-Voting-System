@@ -55,15 +55,16 @@ async function initDB() {
   // Seed default users if table is empty
   const userCount = await db.get('SELECT COUNT(*) as count FROM users');
   if (userCount.count === 0) {
-    const defaultPasswordHash = bcrypt.hashSync('password123', 8);
+    const defaultPasswordHash = bcrypt.hashSync('miniproject', 8);
     const adminPasswordHash = bcrypt.hashSync('admin123', 8);
 
-    await db.run('INSERT INTO users VALUES (?, ?, ?, 0, ?)', ['STU001', 'Alice', defaultPasswordHash, 'student']);
-    await db.run('INSERT INTO users VALUES (?, ?, ?, 0, ?)', ['STU002', 'Bob', defaultPasswordHash, 'student']);
-    await db.run('INSERT INTO users VALUES (?, ?, ?, 0, ?)', ['STU003', 'Charlie', defaultPasswordHash, 'student']);
-    await db.run('INSERT INTO users VALUES (?, ?, ?, 0, ?)', ['ADMIN01', 'Prof. Smith', adminPasswordHash, 'admin']);
+    await db.run('INSERT INTO users VALUES (?, ?, ?, 0, ?)', ['STU001', 'Aryan', defaultPasswordHash, 'student']);
+    await db.run('INSERT INTO users VALUES (?, ?, ?, 0, ?)', ['STU002', 'Shivam', defaultPasswordHash, 'student']);
+    await db.run('INSERT INTO users VALUES (?, ?, ?, 0, ?)', ['STU003', 'Raj', defaultPasswordHash, 'student']);
+    await db.run('INSERT INTO users VALUES (?, ?, ?, 0, ?)', ['STU004', 'Krishna', defaultPasswordHash, 'student']);
+    await db.run('INSERT INTO users VALUES (?, ?, ?, 0, ?)', ['ADMIN01', 'Prof. Yash', adminPasswordHash, 'admin']);
 
-    console.log('Database initialized with default accounts (STU001, STU002, STU003, ADMIN01).');
+    console.log('Database initialized with default accounts (STU001, STU002, STU003, STU004, ADMIN01).');
   }
 }
 
@@ -107,9 +108,9 @@ app.post('/api/auth/login', async (req, res) => {
 // 2. GET CANDIDATES
 app.get('/api/candidates', (req, res) => {
   res.json([
-    { id: 'CAND_A', name: 'Candidate A (Alex)' },
-    { id: 'CAND_B', name: 'Candidate B (Bella)' },
-    { id: 'CAND_C', name: 'Candidate C (Chris)' }
+    { id: 'CAND_A', name: 'Candidate A (IPS)' },
+    { id: 'CAND_B', name: 'Candidate B (DAVV)' },
+    { id: 'CAND_C', name: 'Candidate C (MEDICAPS)' }
   ]);
 });
 
